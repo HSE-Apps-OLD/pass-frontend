@@ -1,0 +1,10 @@
+@import '~antd/dist/antd.css';
+#body {
+  max-width: 1300px; 
+  width: 80%;
+  margin: auto;
+  margin-top: 55px;
+}
+.App {
+  background-color: rgb(250, 250, 250);
+}
