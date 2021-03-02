@@ -3,7 +3,8 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import axios from 'axios';
 
 import Loading from './components/Loading';
-
+import TeacherHome from './components/TeacherHome';
+import Navbar from './components/Navbar'
 import Home from './views/Home';
 
 import AuthContext from './auth/AuthContext';
@@ -68,36 +69,38 @@ const App = () => {
   return (
     <AuthContext.Provider value={{auth, setAuth}}>
       <BrowserRouter>
-        <Switch>
-          <Route exact path="/verify/:token" component={Verify}/>
-          <Route exact path="/forgot-password" component={ForgotPassword}/>
-          <Route exact path="/reset-password/:token" component={ResetPassword}/>
-          <Route exact path="/login" component={Login}/>
-          <Route exact path="/signup" component={Signup}/>
-          <Route exact path="/settings" component={Settings}/>
 
-          {/* general routes */}
-          <Route exact path="/" component={Home}/>
-          
-          {auth.user?.role === "teacher"?
-            <div>
-              {/* admin routes */}
-            </div>
-          :
-            <div>
-              {auth.user?.role === "student"?
-                <div>
-                  {/* student routes */}
-                </div>
-              :
-                <div>
-                  {/* not logged in routes */}
-                </div>
-              }
-            </div>
-          }
-          
-        </Switch>
+        <div className="App">
+          <Navbar/>
+
+          <Switch>
+            <Route exact path="/verify/:token" component={Verify}/>
+            <Route exact path="/forgot-password" component={ForgotPassword}/>
+            <Route exact path="/reset-password/:token" component={ResetPassword}/>
+            <Route exact path="/login" component={Login}/>
+            <Route exact path="/signup" component={Signup}/>
+            <Route exact path="/settings" component={Settings}/>
+
+            
+            {auth.user?.role === "teacher"?
+              <div>
+                <Route exact path="/" component={TeacherHome}/>
+              </div>
+            :auth.user?.role === "student"?
+              <div>
+                {/* student routes */}
+              </div>
+            :
+              <div>
+                {/* other routes */}
+              </div>
+            }
+            
+          </Switch>
+        </div>
+        
+
+
       </BrowserRouter>
     </AuthContext.Provider>
   )

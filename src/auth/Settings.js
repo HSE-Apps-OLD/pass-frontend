@@ -79,8 +79,6 @@ const Settings = ({history}) => {
     
 
     return(
-        <div className="App">
-            <Navbar></Navbar>
             <div id="body" style={{height: "120vh", marginTop:"50px"}}>
 
 
@@ -205,9 +203,6 @@ const Settings = ({history}) => {
                 </div>
 
             </div>
-
-            
-        </div>
     )
 }
 
