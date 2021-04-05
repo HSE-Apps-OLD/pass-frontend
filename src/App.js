@@ -82,13 +82,19 @@ const App = () => {
             <Route exact path="/settings" component={Settings}/>
 
             
-            {auth.user?.role === "teacher"?
+            {auth.user?.role === "admin"?
               <div>
+                <Route exact path="/" component={TeacherHome}/>
+              </div>
+            :auth.user?.role === "teacher"?
+              <div>
+                {/* student routes */}
                 <Route exact path="/" component={TeacherHome}/>
               </div>
             :auth.user?.role === "student"?
               <div>
                 {/* student routes */}
+                <Route exact path="/" component={TeacherHome}/>
               </div>
             :
               <div>

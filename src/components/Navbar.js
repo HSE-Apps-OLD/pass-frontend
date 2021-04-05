@@ -23,7 +23,7 @@ const Navbar = ({history}) => {
           <Link to="/">
             <motion.img whileHover={{ scale: 1.05 }} src={logo} style={{height: "45px", marginRight:"4px", marginLeft:"10px"}}></motion.img>
           </Link>
-          <Title level={3} style={{margin: "0px 5px"}}>HSE Template<div style={{fontSize: "11px", margin: "-4px 0px 0px 39px", marginBottom:"5px"}}></div></Title>
+          <Title level={3} style={{margin: "0px 5px"}}>HSE Pass<div style={{fontSize: "11px", margin: "-4px 0px 0px 39px", marginBottom:"5px"}}></div></Title>
         </div>
 
         <div style={{display: 'flex', alignItems: 'center', width:"250px", justifyContent:"flex-end"}}>
