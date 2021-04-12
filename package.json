@@ -10,6 +10,7 @@
     "axios": "^0.21.0",
     "framer": "^1.2.9",
     "framer-motion": "^2.9.4",
+    "moment": "^2.29.1",
     "motion": "^5.0.0-beta26",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

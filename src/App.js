@@ -3,7 +3,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import axios from 'axios';
 
 import Loading from './components/Loading';
-import TeacherHome from './components/TeacherHome';
+import AdminHome from './views/AdminHome';
 import Navbar from './components/Navbar'
 import Home from './views/Home';
 
@@ -84,17 +84,17 @@ const App = () => {
             
             {auth.user?.role === "admin"?
               <div>
-                <Route exact path="/" component={TeacherHome}/>
+                <Route exact path="/" component={AdminHome}/>
               </div>
             :auth.user?.role === "teacher"?
               <div>
                 {/* student routes */}
-                <Route exact path="/" component={TeacherHome}/>
+                <Route exact path="/" component={AdminHome}/>
               </div>
             :auth.user?.role === "student"?
               <div>
                 {/* student routes */}
-                <Route exact path="/" component={TeacherHome}/>
+                <Route exact path="/" component={AdminHome}/>
               </div>
             :
               <div>

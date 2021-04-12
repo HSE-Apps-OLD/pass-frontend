@@ -11,11 +11,8 @@ const Home = () => {
     const {auth, setAuth} = useContext(AuthContext)
 
     return (
-        <div className="App">
-            <Navbar></Navbar>
-            <div id="body" style={{height:"120vh"}}>
-                hi there
-            </div>
+        <div id="body" style={{height:"120vh"}}>
+            hi there
         </div>
     )
 }

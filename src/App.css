@@ -8,3 +8,17 @@
 .App {
   background-color: rgb(250, 250, 250);
 }
+
+.ant-row {
+  width: 70%;
+}
+.ant-tooltip-inner {
+  color: black;
+}
+.ant-tooltip-content {
+  border: 5px solid #91d5ff;
+  border-radius: 5px;
+}
+.ant-tooltip-arrow-content {
+  background: #91d5ff !important;
+}
