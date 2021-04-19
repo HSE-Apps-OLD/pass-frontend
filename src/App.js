@@ -3,8 +3,11 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import axios from 'axios';
 
 import Loading from './components/Loading';
+import Navbar from './components/Navbar';
+
 import AdminHome from './views/AdminHome';
-import Navbar from './components/Navbar'
+import TeacherHome from './views/TeacherHome';
+import StudentHome from './views/StudentHome';
 import Home from './views/Home';
 
 import AuthContext from './auth/AuthContext';
@@ -99,12 +102,11 @@ const App = () => {
             :
               <div>
                 {/* other routes */}
+                <Route exact path="/" component={Home}/>
               </div>
             }
-            
           </Switch>
         </div>
-        
 
 
       </BrowserRouter>
