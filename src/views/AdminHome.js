@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Card, Input, DatePicker, Row, Col, Tooltip, Select} from 'antd'
+import {Card, Input, DatePicker, Row, Col, Tooltip, Select, Button, Modal} from 'antd'
 import {recentPasses} from '../mockData'
 import moment from 'moment'
 const {Option} = Select
@@ -41,17 +41,51 @@ const TeacherHome = () => {
     window.onresize = () => {
         setCols(Math.floor(window.innerWidth/500))
     }
-
+    const [createVisibility, setCreateVisibility] = useState(false);
+    const [passVisibility, setPassVisibility] = useState(-1);
+    const [createForm, setCreateForm] = useState({
+        student_name: "",
+        teacher_name: "",
+        date: dateString(currDate),
+        status: 2
+    });
 
     return (
         <div style={{
             fontSize: "200px", textAlign: "center",
-            paddingBottom: "1000px", paddingTop: "100px",
+            paddingBottom: "1000px", paddingTop: "50px",
             display: "flex", alignItems: "center", flexDirection: "column"
         }}>
 
             {/* search filters */}
             <div style={{width:"70%", fontSize:"20px", marginBottom:"10px"}}>
+                <Button style={{float: "right"}} onClick={() => {
+                    setCreateVisibility(true);
+                }}>Create Pass</Button>
+                <Modal title="Create Pass" visible={createVisibility} 
+                    onCancel={() => {
+                        setCreateVisibility(false);
+                    }} onOk={() => {
+                        setCreateVisibility(false);
+                    }} okText={<div>Create</div>}
+                >
+                    <DatePicker placeholder="Date" 
+                        onChange={(e) =>{
+                            setCreateForm({...createForm, date: dateString(e)});
+                        }}>
+                    </DatePicker>
+                    <Input placeholder="Student Name"
+                        onChange={(e) =>{
+                            setCreateForm({...createForm, student_name: e.target.value});
+                        }}>
+                    </Input>
+                    <Input placeholder="Teacher Name" 
+                        onChange = {(e) => {
+                            setCreateForm({...createForm, teacher_name: e.target.value});
+                        }}>
+                    </Input>
+                    <Input placeholder="Description"></Input>
+                </Modal>
                 <DatePicker 
                     value={moment(filters.date, 'YYYY-MM-DD')}
                     style={{width:"100%", margin:"5px 0"}} size="large"
@@ -107,14 +141,14 @@ const TeacherHome = () => {
 
             {/* pass results */}
             <Row gutter={[16,16]} width={{width:"100% !important"}}>
-                {filterPasses(recentPasses, filters).map( pass => 
+                {filterPasses(recentPasses, filters).map( (pass, index) => 
                     <Col span={24/cols}>
                         <Card 
                             style={{
                                 borderColor:"#91d5ff", textAlign:"start",
                                 borderRadius:"10px", fontSize:"16px", borderWidth:"5px", 
                             }} 
-                            hoverable
+                            hoverable onClick={() =>{setPassVisibility(index)}}
                         >   
                             <div style={{marginBottom:"20px", display:"flex", justifyContent:"space-between", textAlign:"start", alignItems:"center"}}>
                                 <div>Date: {pass.date}</div>
@@ -128,6 +162,8 @@ const TeacherHome = () => {
                     </Col>
                 )}
             </Row>
+            <Modal title="Pass Information" visible={passVisibility != -1} onOk={() =>{setPassVisibility(-1)}} 
+            onCancel={() =>{setPassVisibility(-1)}}></Modal>
             
         </div>
     )
