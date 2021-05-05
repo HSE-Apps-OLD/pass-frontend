@@ -18,11 +18,19 @@ import ForgotPassword from './auth/ForgotPassword';
 import ResetPassword from './auth/ResetPassword';
 import Settings from './auth/Settings';
 
+import {recentPasses} from './mockData'
+
 import './App.css';
 
 
 const App = () => {
   const [auth, setAuth] = useState({isAuth: false, loading: true, fetched: false})
+  
+  useEffect(() => {
+    localStorage.setItem("passData", JSON.stringify(recentPasses))
+  }, [])
+
+
 
   useEffect(() => {
     document.title = "HSE Template"
@@ -97,7 +105,7 @@ const App = () => {
             :auth.user?.role === "student"?
               <div>
                 {/* student routes */}
-                <Route exact path="/" component={AdminHome}/>
+                <Route exact path="/" component={StudentHome}/>
               </div>
             :
               <div>
