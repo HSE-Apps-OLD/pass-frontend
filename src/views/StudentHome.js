@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import {Card, Input, DatePicker, Row, Col, Tooltip, Select, Button, Modal} from 'antd'
 import {recentPasses} from '../mockData'
 import moment from 'moment'
@@ -30,9 +30,10 @@ const dotStyle = (status, size) => {
 
 
 const StudentHome = () => {
+    const {auth, setAuth} = useContext(AuthContext)
     const currDate = new Date()
     const [filters, setFilters] = useState({
-        student_name: "",
+        student_name: auth.user.name,
         teacher_name: "",
         date: dateString(currDate),
         status: 2
@@ -75,8 +76,8 @@ const StudentHome = () => {
                                     <div style={dotStyle(pass.status, 16)}></div>
                                 </Tooltip>
                             </div>
-                            <div style={{marginBottom:"10px"}}>Student: {pass.student_name} &nbsp; &nbsp; Teacher: {pass.teacher_name}</div>
-                            <div style={{fontWeight:"350"}}>{pass.description}</div>
+                            <div style={{marginBottom:"5px"}}>Student: {pass.student_name}</div>
+                            <div>Teacher: {pass.teacher_name}</div>
                         </Card>
                     </Col>
                 )}

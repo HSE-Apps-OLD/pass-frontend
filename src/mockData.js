@@ -2,9 +2,16 @@ export const recentPasses = {
     passes: [
         {
             status: 1,
-            student_name: "Alec Jean-Pierre Thierion de Monclin",
+            student_name: "Alec Thierion de Monclin",
             date: "2021-04-08",
             teacher_name: "Joshua Gish",
+            description: "this is a description of my life's failures"
+        },
+        {
+            status: -1,
+            student_name: "Alec Thierion de Monclin",
+            date: "2021-04-08",
+            teacher_name: "Master Oogway",
             description: "this is a description of my life's failures"
         },
         {
