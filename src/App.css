@@ -15,10 +15,9 @@
 .ant-tooltip-inner {
   color: black;
 }
-.ant-tooltip-content {
-  border: 5px solid #91d5ff;
-  border-radius: 5px;
+/* .ant-tooltip-content {
+  border: 3px solid #91d5ff;
 }
 .ant-tooltip-arrow-content {
   background: #91d5ff !important;
-}
+} */

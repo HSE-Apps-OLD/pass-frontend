@@ -6,7 +6,6 @@ import Loading from './components/Loading';
 import Navbar from './components/Navbar';
 
 import AdminHome from './views/AdminHome';
-import TeacherHome from './views/TeacherHome';
 import StudentHome from './views/StudentHome';
 import Home from './views/Home';
 
@@ -82,7 +81,7 @@ const App = () => {
       <BrowserRouter>
 
         <div className="App">
-          <Navbar/>
+          
 
           <Switch>
             <Route exact path="/verify/:token" component={Verify}/>
@@ -90,26 +89,33 @@ const App = () => {
             <Route exact path="/reset-password/:token" component={ResetPassword}/>
             <Route exact path="/login" component={Login}/>
             <Route exact path="/signup" component={Signup}/>
-            <Route exact path="/settings" component={Settings}/>
+            
 
             
             {auth.user?.role === "admin"?
               <div>
+                <Navbar/>
+                <Route exact path="/settings" component={Settings}/>
                 <Route exact path="/" component={AdminHome}/>
               </div>
             :auth.user?.role === "teacher"?
               <div>
                 {/* student routes */}
+                <Navbar/>
+                <Route exact path="/settings" component={Settings}/>
                 <Route exact path="/" component={AdminHome}/>
               </div>
             :auth.user?.role === "student"?
               <div>
                 {/* student routes */}
+                <Navbar/>
+                <Route exact path="/settings" component={Settings}/>
                 <Route exact path="/" component={StudentHome}/>
               </div>
             :
               <div>
                 {/* other routes */}
+                <Navbar/>
                 <Route exact path="/" component={Home}/>
               </div>
             }

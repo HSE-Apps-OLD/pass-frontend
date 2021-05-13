@@ -21,7 +21,7 @@ const Navbar = ({history}) => {
         
         <div style={{display: "flex", alignItems: "center", width:"250px"}}>
           <Link to="/">
-            <motion.img whileHover={{ scale: 1.05 }} src={logo} style={{height: "45px", marginRight:"4px", marginLeft:"10px"}}></motion.img>
+            <motion.img whileHover={{ scale: 1.05 }} src={logo} style={{height: "35px", marginRight:"4px", marginLeft:"10px"}}></motion.img>
           </Link>
           <Title level={3} style={{margin: "0px 5px"}}>HSE Pass<div style={{fontSize: "11px", margin: "-4px 0px 0px 39px", marginBottom:"5px"}}></div></Title>
         </div>
@@ -33,9 +33,9 @@ const Navbar = ({history}) => {
               <motion.div style={{marginRight: "10px"}} whileHover={{ scale: 1.03 }}>
                 <Link to="/settings">
                   {auth.user.profilePictureURL === "default" ?
-                    <Avatar style={{cursor: "pointer"}} icon={<UserOutlined />} size={35} />
+                    <Avatar style={{cursor: "pointer"}} icon={<UserOutlined/>} size={30} />
                   :
-                    <Avatar style={{cursor: "pointer"}}src={auth.user.profilePictureURL} size={35} />
+                    <Avatar style={{cursor: "pointer"}}src={auth.user.profilePictureURL} size={30} />
                   }
                 </Link>
               </motion.div>
