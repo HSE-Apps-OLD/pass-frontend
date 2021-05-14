@@ -18,8 +18,6 @@ import ForgotPassword from './auth/ForgotPassword';
 import ResetPassword from './auth/ResetPassword';
 import Settings from './auth/Settings';
 
-import {recentPasses} from './mockData';
-
 import './App.css';
 
 

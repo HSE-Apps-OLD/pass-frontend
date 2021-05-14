@@ -11,7 +11,7 @@ import {Menu} from 'antd'
 
 const History = ({filters, setFilters}) => {
 
-    
+
     const {dataContext, setDataContext} = useContext(DataContext)
     const {auth, setAuth} = useContext(AuthContext)
 
@@ -23,6 +23,7 @@ const History = ({filters, setFilters}) => {
 
             {getDates(dataContext.passes).map((d) =>
                 <Menu.SubMenu title={d}>
+
                     {dataContext.passes.filter(item => item.date == d).map((pass) =>
                         <Menu.Item
                             onClick={() => {
@@ -51,6 +52,7 @@ const History = ({filters, setFilters}) => {
                             {pass.teacher_name}
                         </Menu.Item>
                     )}
+
                 </Menu.SubMenu>
             )}
 

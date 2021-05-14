@@ -6,7 +6,6 @@ import {Link} from 'react-router-dom';
 
 import AuthContext from '../auth/AuthContext.js'
 
-import Loading from './Loading';
 
 
 const Home = () => {

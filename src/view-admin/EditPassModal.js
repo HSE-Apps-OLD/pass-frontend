@@ -38,9 +38,14 @@ const EditPassModal = ({visible, setVisible}) => {
         const getRes = await axios.get(`${process.env.REACT_APP_PASS_API}/`)
         setDataContext({passes: getRes.data.passes})
     }
+    const deletePass = async(id) => {
+        const delRes = await axios.delete(`${process.env.REACT_APP_PASS_API}/delete/${id}`)
+        const getRes = await axios.get(`${process.env.REACT_APP_PASS_API}/`)
+        setDataContext({passes: getRes.data.passes})
+    }
 
 
-
+    
     return (
         <Modal
             title="Pass Information"
@@ -125,10 +130,8 @@ const EditPassModal = ({visible, setVisible}) => {
             <div style={{display:"flex", justifyContent:"space-between"}}>
                 <Button danger
                     onClick={() => {
-                        // const passArr = dataContext.passes
-                        // passArr.splice(passVisibility, 1)
-                        // setDataContext({passes: passArr})
-                        // setPassVisibility(-1)
+                        setVisible(-1)
+                        deletePass(dataContext.passes[visible]._id)
                     }}
                 >Delete</Button>
                 {!isFormFilled(editForm) && <div style={{color:"red"}}>*please fill out all sections</div>}

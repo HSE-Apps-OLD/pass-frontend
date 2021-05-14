@@ -26,6 +26,9 @@ export const dotStyle = (status, size) => {
 
 
 
+export const decisionFilter = (auth, filters, pass) => {
+    return auth.user.role=="teacher"? adminPassFilter(filters, pass) : studentPassFilter(pass, filters)
+}
 export const studentPassFilter = (pass, filters) => {
     return (
         pass._id.toLowerCase().indexOf(filters._id?.toLowerCase()) != -1 &&
@@ -54,4 +57,6 @@ export const isRequestFilled = (form) => {
         form.teacher_name && form.date && form.description && form.for_time
     )
 }
+
+
 

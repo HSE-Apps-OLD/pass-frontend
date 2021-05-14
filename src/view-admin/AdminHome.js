@@ -3,8 +3,10 @@ import axios from 'axios'
 import moment from 'moment'
 
 import DataContext from '../contexts/DataContext'
+import PassCards from '../shared-components/PassCards'
 import CreatePassModal from './CreatePassModal'
 import EditPassModal from './EditPassModal'
+import History from '../shared-components/History'
 
 import {Card, Input, DatePicker, Row, Col, Tooltip, Select, Button, Modal, Menu} from 'antd'
 import {dateString, statusColorAndDesc, dotStyle, getDates, adminPassFilter, isFormFilled} from '../Functions'
@@ -30,39 +32,13 @@ const AdminHome = () => {
     const [createVisibility, setCreateVisibility] = useState(false);
     const [passVisibility, setPassVisibility] = useState(-1);
     
-    
-    const [cols, setCols] = useState(Math.floor(window.innerWidth/500))
-    window.onresize = () => {setCols(Math.floor(window.innerWidth/500))}
-
 
 
     return (
         <div style={{display:"flex", justifyContent:"space-between", width:"100%"}}>
 
-            <Menu mode='inline' style={{width:"340px"}}>
-                <Menu.Item style={{marginTop:"20px", fontWeight:"600", fontSize:"20px"}}>History</Menu.Item>
-                {getDates(dataContext.passes).map((d) =>
-                    <>
-                        <Menu.SubMenu title={d}>
-                            {dataContext.passes.filter(item => item.date == d).map((pass) =>
-                                <Menu.Item
-                                    onClick={() => {
-                                        var parts = pass.date.split('-');
-                                        setFilters({
-                                            ...filters,
-                                            date: dateString(new Date(parts[0], parts[1] - 1, parts[2])),
-                                            teacher_name: pass.teacher_name,
-                                            student_name: pass.student_name,
-                                            status: pass.status,
-                                            id: pass.id
-                                        })
-                                    }}
-                                >{pass.teacher_name}</Menu.Item>
-                            )}
-                        </Menu.SubMenu>
-                    </>
-                )}
-            </Menu>
+
+            <History filters={filters} setFilters={setFilters}/>
 
             <EditPassModal visible={passVisibility} setVisible={setPassVisibility}/>
             <CreatePassModal visible={createVisibility} setVisible={setCreateVisibility}/>
@@ -82,7 +58,6 @@ const AdminHome = () => {
                         ><PlusOutlined/></Button>
                     </Tooltip>
                 </div>
-
 
 
                 {/* search filters */}
@@ -132,40 +107,12 @@ const AdminHome = () => {
                 </div>
 
 
+                <PassCards
+                    filters={filters}
+                    tipText="Click to View and Edit"
+                    setVisible={setPassVisibility}
+                />
 
-                {/* pass results */}
-                <Row gutter={[16,16]} width={{width:"100% !important"}}>
-                    {dataContext.passes.map( (pass, index) => 
-                        <>
-                            {adminPassFilter(filters, pass) &&
-                                <Col span={24/cols}>
-                                    <Tooltip title="Click to View or Edit" color="white" placement="bottom">
-                                        <Card 
-                                            hoverable
-                                            style={{
-                                                borderColor:"#dfdfdf", borderRadius:"10px",
-                                                textAlign:"start", fontSize:"16px"
-                                            }} 
-                                            onClick={() => {
-                                                setPassVisibility(index)
-                                            }}
-                                        >   
-                                            <div style={{marginBottom:"20px", display:"flex", justifyContent:"space-between", textAlign:"start", alignItems:"center"}}>
-                                                <div>Date: {pass.date}</div>
-                                                <Tooltip title={statusColorAndDesc(pass.status)[1]} color="white" style={{border:"5px solid black"}}>
-                                                    <div style={dotStyle(pass.status, 16)}></div>
-                                                </Tooltip>
-                                            </div>
-                                            <div style={{marginBottom:"10px"}}>Student: {pass.student_name}</div>
-                                            <div>Teacher: {pass.teacher_name}</div>
-                                        </Card>
-                                    </Tooltip>
-                                </Col>
-                            }
-                        </>
-                    )}
-                </Row>
-                
             </div>
         </div>
     )
