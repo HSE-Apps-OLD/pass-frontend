@@ -1,5 +1,4 @@
 import React , {useState, useContext, useEffect} from 'react';
-import Navbar from '../components/Navbar'
 import SettingsNav from './SettingsNav'
 
 import { Row, Col, Typography, PageHeader, Card, Menu, Button, Input, Switch, Divider, message, Tooltip} from 'antd';
