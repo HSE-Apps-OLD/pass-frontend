@@ -19,13 +19,14 @@ const PassRequest = ({visible, setVisible}) => {
 
     const [reqPass, setReqPass] = useState({
         date: new Date(), for_time: "",
-        teacher_name: "", description: "",
-        _id: ""
+        teacher_name: "", description: ""
     })
 
 
     const requestPass = async() => {
-        const createRes = await axios.post(`${process.env.REACT_APP_PASS_API}/create`, reqPass)
+        const createRes = await axios.post(`${process.env.REACT_APP_PASS_API}/create`, 
+            {...reqPass, date: dateString(reqPass.date)}
+        )
         const getRes = await axios.get(`${process.env.REACT_APP_PASS_API}/`)
         setDataContext({passes: getRes.data.passes})
     }
