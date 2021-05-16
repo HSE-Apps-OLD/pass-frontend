@@ -39,9 +39,13 @@ const App = () => {
   
 
   const getData = async() => {
-    const passRes = await axios.get(`${process.env.REACT_APP_PASS_API}/`);
-    console.log(passRes.data)
-    setDataContext({passes: passRes.data.passes});
+    try {
+      const passRes = await axios.get(`${process.env.REACT_APP_PASS_API}/`);
+      console.log(passRes.data)
+      setDataContext({passes: passRes.data.passes});
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   useEffect(() => {

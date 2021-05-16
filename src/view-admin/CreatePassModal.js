@@ -35,9 +35,13 @@ const CreatePassModal = ({visible, setVisible}) => {
 
 
     const createPass = async() => {
-        const createRes = await axios.post(`${process.env.REACT_APP_PASS_API}/create`, createForm)
-        const getRes = await axios.get(`${process.env.REACT_APP_PASS_API}/`)
-        setDataContext({passes: getRes.data.passes})
+        try {
+            const createRes = await axios.post(`${process.env.REACT_APP_PASS_API}/create`, createForm)
+            const getRes = await axios.get(`${process.env.REACT_APP_PASS_API}/`)
+            setDataContext({passes: getRes.data.passes})
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     

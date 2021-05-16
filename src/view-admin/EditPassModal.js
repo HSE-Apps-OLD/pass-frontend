@@ -34,14 +34,22 @@ const EditPassModal = ({visible, setVisible}) => {
 
 
     const editPass = async() => {
-        const editRes = await axios.put(`${process.env.REACT_APP_PASS_API}/edit`, editForm)
-        const getRes = await axios.get(`${process.env.REACT_APP_PASS_API}/`)
-        setDataContext({passes: getRes.data.passes})
+        try {
+            const editRes = await axios.put(`${process.env.REACT_APP_PASS_API}/edit`, editForm)
+            const getRes = await axios.get(`${process.env.REACT_APP_PASS_API}/`)
+            setDataContext({passes: getRes.data.passes})
+        } catch (error) {
+            console.log(error)
+        }
     }
     const deletePass = async(id) => {
-        const delRes = await axios.delete(`${process.env.REACT_APP_PASS_API}/delete/${id}`)
-        const getRes = await axios.get(`${process.env.REACT_APP_PASS_API}/`)
-        setDataContext({passes: getRes.data.passes})
+        try {
+            const delRes = await axios.delete(`${process.env.REACT_APP_PASS_API}/delete/${id}`)
+            const getRes = await axios.get(`${process.env.REACT_APP_PASS_API}/`)
+            setDataContext({passes: getRes.data.passes})
+        } catch (error) {
+            console.log(error)
+        }
     }
 
 

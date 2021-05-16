@@ -24,11 +24,15 @@ const PassRequest = ({visible, setVisible}) => {
 
 
     const requestPass = async() => {
-        const createRes = await axios.post(`${process.env.REACT_APP_PASS_API}/create`, 
-            {...reqPass, date: dateString(reqPass.date)}
-        )
-        const getRes = await axios.get(`${process.env.REACT_APP_PASS_API}/`)
-        setDataContext({passes: getRes.data.passes})
+        try {
+            const createRes = await axios.post(`${process.env.REACT_APP_PASS_API}/create`, 
+                {...reqPass, date: dateString(reqPass.date)}
+            )
+            const getRes = await axios.get(`${process.env.REACT_APP_PASS_API}/`)
+            setDataContext({passes: getRes.data.passes})
+        } catch (error) {
+            console.log(error)
+        }
     }
 
 
